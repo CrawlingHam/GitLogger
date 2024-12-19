@@ -4,7 +4,7 @@ GitLogger is designed to enhance your coding workflow by automating the git comm
 
 ## Features
 
-<img src="/gitlogger/src/assets/all-features.mp4"
+<img src="/gitlogger/src/assets/features.mp4"
 
 * **Detailed Commit Logs**
   * Track commit messages, authors, timestamps, and associated file changes.
