@@ -4,7 +4,7 @@ GitLogger is designed to enhance your coding workflow by automating the git comm
 
 ## Features
 
-<img src="/gitlogger/src/assets/features.mp4"
+<img src="/gitlogger/src/assets/features.mp4">
 
 * **Detailed Commit Logs**
   * Track commit messages, authors, timestamps, and associated file changes.
@@ -12,13 +12,17 @@ GitLogger is designed to enhance your coding workflow by automating the git comm
 * **Task Log Management**
   * Create and manage task logs to document your coding tasks and progress.
   * Ensure your development process is well-documented and easy to reference.
+<img src="/gitlogger/src/assets/repository_view.mp4">
 * **Repository Insights**
   * Access detailed file change information, including file names, paths, and commit IDs.
   * Automatically link commit details to the corresponding remote repository.
 * **Streamlined Workflow**
   * Enhance productivity with features tailored to make code tracking effortless.
   * Keep a comprehensive overview of your development timeline.
-
+* **Automated Commit Tracking**
+  * Runs by default every 15 minutes, capturing your code changes as commits.
+  * Customize the commit interval using the "Change Commit Interval" command.
+<img src="/gitlogger/src/assets/change_commit_interval.mp4">
 
 ##
 ## Data Collected and Usage

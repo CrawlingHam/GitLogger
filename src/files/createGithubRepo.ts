@@ -8,7 +8,10 @@ export async function createGitHubRepo(repoName: string, accessToken: string) {
             Authorization: `token ${accessToken}`,
             Accept: "application/vnd.github.v3+json",
         },
-        body: JSON.stringify({ name: repoName }),
+        body: JSON.stringify({
+            name: repoName,
+            private: true,
+        }),
     };
 
     try {
