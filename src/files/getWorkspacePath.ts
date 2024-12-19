@@ -1,4 +1,4 @@
-import { vscode } from "./imports";
+import { vscode } from "../imports";
 
 export function getWorkspacePath() {
     const workspaceFolders = vscode.workspace.workspaceFolders;

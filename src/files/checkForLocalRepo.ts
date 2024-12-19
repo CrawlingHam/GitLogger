@@ -1,4 +1,6 @@
-export async function checkForFile(url: string, token: string) {
+export async function checkForRepo(username: string, repoName: string, token: string) {
+    const url = `https://api.github.com/repos/${username}/${repoName}`;
+
     try {
         const response = await fetch(url, {
             method: "GET",
@@ -6,15 +8,12 @@ export async function checkForFile(url: string, token: string) {
                 Authorization: `token ${token}`,
                 Accept: "application/vnd.github.v3+json",
             },
-        }); 
+        });
         if (response.ok) {
-            // File already exists
-            const data = await response.json();
-            const sha = (data as { sha: string }).sha;
+            // Repository already exists
             return {
                 exists: true,
                 error: null,
-                sha,
             };
         } else {
             // Other errors
@@ -25,7 +24,6 @@ export async function checkForFile(url: string, token: string) {
         return {
             exists: false,
             error: (error as Error).message,
-            sha: null,
         };
     }
 }

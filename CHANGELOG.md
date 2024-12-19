@@ -1,9 +1,4 @@
 # Change Log
 
-All notable changes to the "gitlogger" extension will be documented in this file.
-
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
-
-## [Unreleased]
-
+## 2024/12/19
 - Initial release

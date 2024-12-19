@@ -1,71 +1,98 @@
-# gitlogger README
+# GitLogger
 
-This is the README for your extension "gitlogger". After writing up a brief description, we recommend including the following sections.
+GitLogger is designed to enhance your coding workflow by automating the git commit process as well as providing detailed tracking and logging of code changes. With GitLogger, you can monitor your Git commits, capture relevant metadata, and organize this information in a structured manner. Whether you're a solo developer or part of a team, GitLogger ensures that you stay productive, organized, and well-informed about your project's history.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+<img src="/gitlogger/src/assets/all-features.mp4"
 
-For example if there is an image subfolder under your extension project workspace:
+* **Detailed Commit Logs**
+  * Track commit messages, authors, timestamps, and associated file changes.
+  * Fetch metadata directly from your Git repository to maintain an up-to-date history.
+* **Task Log Management**
+  * Create and manage task logs to document your coding tasks and progress.
+  * Ensure your development process is well-documented and easy to reference.
+* **Repository Insights**
+  * Access detailed file change information, including file names, paths, and commit IDs.
+  * Automatically link commit details to the corresponding remote repository.
+* **Streamlined Workflow**
+  * Enhance productivity with features tailored to make code tracking effortless.
+  * Keep a comprehensive overview of your development timeline.
 
-\!\[feature X\]\(images/feature-x.png\)
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+##
+## Data Collected and Usage
 
-## Requirements
+GitLogger requires access to specific data to function effectively:
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+* **Git Token:** Used to create and update a single repository for commit tracking purposes.
+* **GitHub Username:** Used to identify the user and associate commits with their GitHub profile.
+* **Remote Repository and Files:** Accessed to fetch commit metadata and file change details.
+* **Local Repository:** Analyzed to retrieve commit logs and changes in the current working folder.
 
-## Extension Settings
+**What GitLogger Does with This Data:**
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+* **Commit Tracking:**
+  * Executes Git commits with user-provided messages.
+  * Retrieves commit logs from the local repository.
+* **Repository Management:**
+  * Creates a dedicated repository to store commit history.
+  * Updates the repository with structured commit data, including:
+    * File names and paths.
+    * Links to the remote repository's commit history.
+    * Commit metadata such as timestamps and authors.
+    * If the changed files exist in the remote repository, the updated repository includes the links to the files inside the remote repository
 
-For example:
+**Data Stored in the Dedicated Repository:**
 
-This extension contributes the following settings:
+* Names of files changed in each commit.
+* URLs linking to the files in the remote repository.
+* Commit IDs and their corresponding remote repository links.
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+##
+## Installation
 
-## Known Issues
+1. Open the Extensions view in Visual Studio Code (Ctrl+Shift+X).
+2. Search for "GitLogger".
+3. Click "Install".
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+##
+## Getting Started
 
+1. Open a project folder in Visual Studio Code.
+2. Initalize a local git repository.
+3. Connect your local repository with a remote repository .
+4. Use GitLogger commands from the Command Palette (Ctrl+Shift+P).
+5. Follow the prompts to configure your GitHub token and repository.
+
+
+##
+## Limitations
+
+* GitLogger will only create and update one dedicated repository for commit tracking.
+* It requires a GitHub token to push data to the repository.
+* Local repository access is necessary to retrieve commit and file change information.
+
+##
+## Privacy and Security
+
+GitLogger is designed with privacy and security in mind:
+
+* **Minimal Data Usage:** Only collects data necessary for commit tracking.
+* **Dedicated Repository:** All collected data is stored in a single repository created by the extension.
+* **Secure Access:** Uses your GitHub token to securely create and update repositories.
+##
+## Support and Feedback
+
+If you encounter any issues or have suggestions for improvement, please visit our GitHub Issues page.
+
+
+##
+## License
+
+This extension is licensed under the MIT License.
+##
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+### v1.0.0
+Initial release with core features including commit tracking, repository creation, and task log management.

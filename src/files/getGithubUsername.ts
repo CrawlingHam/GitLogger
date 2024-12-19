@@ -11,9 +11,16 @@ export async function getGitHubUsername(accessToken: string) {
         });
         const data = await response.json();
         if (!response.ok) throw new Error((data as Error).message);
-        return { success: true, error: null, username: (data as { login: string }).login };
+        return {
+            success: true,
+            error: null,
+            username: (data as { login: string }).login,
+        };
     } catch (error) {
-        console.error("Error fetching GitHub username:", (error as Error).message);
-        return { success: false, error: (error as Error).message, username: null };
+        return {
+            success: false,
+            error: (error as Error).message,
+            username: null,
+        };
     }
 }

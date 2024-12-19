@@ -1,51 +1,31 @@
-import { vscode, getWorkspacePath, createRepository } from "./imports";
-import { initializeRepository } from "./initalizeRepository";
+import { ChangeInterval, LogCommitIfNotInProgress, initializeCommitLogging, vscode } from "./imports";
+
+let intervalHandle: NodeJS.Timeout | null = null;
 
 export async function activate(context: vscode.ExtensionContext) {
-    
-    // Get workspace
-    const workFolder = getWorkspacePath();
-    if(!workFolder) return vscode.window.showErrorMessage("No workspace folder found. Please open a folder.");
+    // Fetch the default interval from settings
+    const config = vscode.workspace.getConfiguration("codeTracking");
+    const defaultIntervalMinutes = config.get<number>("commitInterval", 1);
 
-    // check for git init
-    await initializeRepository(workFolder)
+    // Initalize interval
+    initializeCommitLogging(defaultIntervalMinutes, intervalHandle);
 
+    context.subscriptions.push(
+        vscode.commands.registerCommand("extension.LogCommit", async () => {
+            await LogCommitIfNotInProgress();
+        })
+    );
 
-
-    // get token
-
-    // get username
-
-    // get file
-
-    // git commit 
-
-    // git log the commit
-
-    // parse git log
-
-    // format log
-
-    // push to file
-
-    // set interval every 30 minutes git commit and push to file
-    
-
-
-    // context.subscriptions.push(
-    //     vscode.commands.registerCommand("extension.gitInit", async () => {
-    //         const workspacePath = await getWorkspacePath();
-    //         if (!workspacePath) return;
-
-    //         // Initialize the repository (implement git init logic here)
-    //         vscode.window.showInformationMessage("Git initialization is not yet implemented.");
-    //     })
-    // );
+    context.subscriptions.push(
+        vscode.commands.registerCommand("extension.ChangeInterval", async () => {
+            await ChangeInterval(intervalHandle);
+        })
+    );
 }
 
-// git log --stat = shows file names and path + if added or removed code
-// next: create a file inside the repo called task_log.md with the structure:
-//  login.tsx(file name)            Fixed bug in login feature(commit message)             30 minutes ago(date committed)
-// format and style
-
-export function deactivate() {}
+export function deactivate() {
+    if (intervalHandle) {
+        clearInterval(intervalHandle);
+        intervalHandle = null;
+    }
+}

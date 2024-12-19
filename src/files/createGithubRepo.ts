@@ -1,6 +1,6 @@
-import { vscode, getGitHubUsername, createFileInRepo, runGitLog } from "./imports";
+import { vscode } from "../imports";
 
-export async function createGitHubRepo(repoName: string, accessToken: string, workspacePath: string) {
+export async function createGitHubRepo(repoName: string, accessToken: string) {
     const url = `https://api.github.com/user/repos`;
     const options = {
         method: "POST",
@@ -24,7 +24,15 @@ export async function createGitHubRepo(repoName: string, accessToken: string, wo
         const result = await response.json();
         const repoURL = (result as { html_url: string }).html_url;
         vscode.window.showInformationMessage("Repository created: " + repoURL);
+        return {
+            success: true,
+            error: null,
+        };
     } catch (error) {
         vscode.window.showErrorMessage("Error creating repository: " + (error as Error).message);
+        return {
+            success: false,
+            error: (error as Error).message,
+        };
     }
 }

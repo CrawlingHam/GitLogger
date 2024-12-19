@@ -1,41 +1,62 @@
 import * as fs from "fs";
 import * as path from "path";
+import { promisify } from "util";
 import * as vscode from "vscode";
 import { exec } from "child_process";
-import { ParseGitLog } from "./types";
-import { runGitLog } from "./runGitLog";
-import { logProblem } from "./logProblem";
-import { parseGitLog } from "./parseGitLogs";
-import { createFileInRepo } from "./createFile";
-import { createRepository } from "./createRepo";
-import { saveCommitLogs } from "./saveCommitLogs";
-import { checkGitStatus } from "./checkGitStatus";
-import { formatLogsAsMarkdown } from "./formatLogs";
-import { createGitHubRepo } from "./createGithubRepo";
-import { getWorkspacePath } from "./getWorkspacePath";
-import { getGitHubUsername } from "./getGithubUsername";
-import { getGitHubAccessToken } from "./getGithubToken";
-import { updateCodeTracking } from "./updateCodeTracking";
-import { isGitInitialized } from "./isGitInitalized";
-
+import saveCommits from "./files/saveCommits";
+import { gitCommit } from "./files/gitCommit";
+import { LogCommit } from "./commands/LogCommit";
+import { handleError } from "./files/handleError";
+import { parseGitLog } from "./files/parseGitLogs";
+import { updateReadme } from "./files/updateREADME";
+import { checkForRepo } from "./files/checkForLocalRepo";
+import { resetCommitLogging } from "./files/commitLogging";
+import { ChangeInterval } from "./commands/ChangeInterval";
+import { isGitInitialized } from "./files/isGitInitalized";
+import { extractTaskFile } from "./files/latestCommitFile";
+import { createGitHubRepo } from "./files/createGithubRepo";
+import { getWorkspacePath } from "./files/getWorkspacePath";
+import { ensureReadmeContent } from "./files/readFromReadMe";
+import { getGitHubUsername } from "./files/getGithubUsername";
+import { createTaskLogFile } from "./files/createTaskLogFile";
+import { getGitHubAccessToken } from "./files/getGithubToken";
+import { ParseGitLog, ActivateResult, Commit } from "./types";
+import fetchRemoteFilePath from "./files/fetchRemoteFilePath";
+import { initializeCommitLogging } from "./files/commitLogging";
+import { LogCommitIfNotInProgress } from "./files/commitLogging";
+import { initializeRepository } from "./files/initalizeRepository";
+import { checkForRemoteRepository } from "./files/checkforRemoteRepo";
+import { constructMarkdownTable } from "./files/constructMarkdownContent";
 export {
     fs,
     exec,
     path,
     vscode,
-    runGitLog,
-    logProblem,
+    Commit,
+    promisify,
+    gitCommit,
+    LogCommit,
     parseGitLog,
     ParseGitLog,
-    checkGitStatus,
-    saveCommitLogs,
+    saveCommits,
+    handleError,
+    checkForRepo,
+    updateReadme,
+    ActivateResult,
+    ChangeInterval,
+    extractTaskFile,
     createGitHubRepo,
-    createRepository,
     getWorkspacePath,
-    createFileInRepo,
     isGitInitialized,
+    createTaskLogFile,
     getGitHubUsername,
-    updateCodeTracking,
+    resetCommitLogging,
+    ensureReadmeContent,
+    fetchRemoteFilePath,
+    initializeRepository,
     getGitHubAccessToken,
-    formatLogsAsMarkdown,
+    constructMarkdownTable,
+    initializeCommitLogging,
+    checkForRemoteRepository,
+    LogCommitIfNotInProgress,
 };
